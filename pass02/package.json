@@ -1,0 +1,16 @@
+{
+  "name": "pass02",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^3.0.5",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.4.20"
+  },
+  "scripts": {
+    "start": "nodemon app.js"
+  }
+}

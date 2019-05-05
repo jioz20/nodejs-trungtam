@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List Singer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>List Singer</h2>
+                <a class="btn btn-primary" href="/add">Add new Singer</a>
+                <br><br>
+            </div>
+        </div>
+        
+        <% if(error_message!=''){%>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="alert alert-danger text-center">
+                    <%= error_message%>
+                </div>
+            </div>
+        </div>
+        <% }%>
+        <% if(success_message!=''){%>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <div class="alert alert-success text-center">
+                    <%= success_message%>
+                </div>
+            </div>
+        </div>
+        <% }%>
+        <div class="row">
+            <% if(singers.length > 0){%>
+            <table class="table">
+                <thead>
+                    <th>STT</th>
+                    <th>Name</th>
+                    <th>Avatar</th>
+                    <th>Link</th>
+                    <th>Options</th>
+                </thead>
+                <tbody>
+                    <%
+                    singers.forEach((singer,index)=>{
+                    %>
+                    <tr>
+                        <td><%=index+1%></td>
+                        <td><%=singer.name%></td>
+                        <td>
+                            <img src="images/<%=singer.avatar%>" width="200px">
+                        </td>
+                        <td>
+                            <a href="<%=singer.link%>" target="_blank"><%=singer.name%></a>
+                        </td>
+                        <td>
+                            <a href="/update/<%=singer._id%>" class="btn btn-warning" style="width:100%">Update</a>
+                            <br><br>
+                            <button style="width:100%" class="btn btn-danger">
+                            <a onclick="return confirm('Are you sure?')" href="/remove/<%=singer._id%>">Delete</a>
+                            </button>
+                        </td>
+                    </tr>
+                    <% 
+                    })
+                    %>
+                </tbody>
+            </table>
+            <% }
+            else{%>
+            <div class="col-12">
+                <div class="text-danger">Singer not found!</div>
+            </div>
+            <%}%>
+        </div>
+    </div>
+</body>
+</html>
